@@ -1,0 +1,14 @@
+{
+  "type": "module",
+  "module": "index.ts",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "cheerio": "^1.0.0",
+    "url": "^0.11.4",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.11",
+    "@types/node": "^22.7.5"
+  }
+}
