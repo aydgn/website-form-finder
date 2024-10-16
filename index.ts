@@ -3,16 +3,18 @@ const cheerio = require("cheerio");
 import { resolve as resolveUrl } from "url";
 import { getSitemap, shouldSkipLink } from "./helpers";
 
-const startingUrl = "https://boztuggroup.com/";
+const startingUrl = "https://kebeci.com.tr/";
 
 const visitedUrls: Set<string> = new Set();
 const urlsWithForms: Array<string> = [];
+let totalCrawledPages = 0; // Counter for total crawled pages
 
 // Fetch and parse the page for forms and internal links
 async function crawlPage(pageUrl: string, baseUrl: string): Promise<void> {
   if (visitedUrls.has(pageUrl)) return;
 
   visitedUrls.add(pageUrl);
+  totalCrawledPages++; // Increment the counter
   console.log(`🌐 Crawling: ${pageUrl}`);
 
   try {
@@ -68,4 +70,8 @@ async function crawlPage(pageUrl: string, baseUrl: string): Promise<void> {
   } else {
     console.error("❌ No forms were found on the website.");
   }
+
+  // Log the total number of crawled pages and pages with forms
+  console.log(`🌐 Total crawled pages: ${totalCrawledPages}`);
+  console.log(`✅ Total pages with forms: ${urlsWithForms.length}`);
 })();
